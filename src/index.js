@@ -17,6 +17,10 @@ function generateCodeChallenge(verifier) {
     return crypto.createHash('sha256').update(verifier, 'utf8').digest('base64url');
 }
 
+app.get('/health', (_req, res) => {
+    res.json({ status: 'ok' });
+});
+
 app.get('/auth/start', (req, res) => {
     const sessionId = req.query.session;
     if (!sessionId) {
